@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{% block title %}
+{% endblock %}
+{%block body%}
+<div class="row">
+    <div class="col-md-9 mt-2">
+        <h5 class="bg-primary text-white p-2">Customer Details</h5>
+        <p><b>Name:</b> {{user.username}}</p>
+        <p><b>Phone No.:</b> 0158657547</p>
+        <p><b>Email:</b> {{user.email}}</p>
+
+
+        <h5 class="bg-primary text-white p-2">Cart Details</h5>
+        {% for x in cart_items%}
+        <div class="row">
+            <div class="col-md-4 mt-2">
+                <img src="{{x.pet.image.url}}" width="100%" style="height: 200px;">
+            </div>
+            <div class="col-md-8">
+                <p><b>Pet Name:</b>&nbsp;&nbsp;{{x.pet.name}}</p>
+                <p><b>Price:</b>&nbsp;&nbsp;{{x.pet.price}}</p>
+                <p><b>Quantity:</b>&nbsp;&nbsp;{{x.quantity}}</p>
+                <p><b>Pet Details:</b>&nbsp;&nbsp;{{x.pet.desc}}</p>
+            </div>
+        </div>
+        <hr>
+        {% empty %}
+        <div class="row">
+            <div class="col">
+                Your Cart Is Empty
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+    <div class="col-md-3 mt-2">
+      
+        <h5 class="bg-primary text-white p-2">Total</h5>
+        <p class="bg-secondary-subtle"><b>Total Pet: ({{items}})</b></p>
+        <hr>
+        <p class="bg-secondary-subtle"><b>Total Amount: {{total}}</b></p>
+        <a href="{% url 'payment' %}"><button class="btn btn-danger" style="width: 300px;">Make Payment</button></a>
+    </div>
+    
+</div>
+{% endblock %}
+
+
